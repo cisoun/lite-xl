@@ -213,6 +213,16 @@ function ContextMenu:draw_context_menu()
   if not self.items then return end
   local bx, by, bw, bh = self.position.x, self.position.y, self.items.width, self.height
 
+  -- shadow
+  local iter = 8;
+  local shadow = { common.color("#00000002") };
+  for i = 0, iter, 1 do
+    local t = i / iter * 2 * math.pi
+    local a = math.sin(t);
+    local b = math.cos(t);
+    renderer.draw_rect(bx + a * 6 - 3, by + b * 6, bw + 6, bh + 6, shadow)
+  end
+  
   renderer.draw_rect(
     bx - border_width,
     by - border_width,
